@@ -1,0 +1,30 @@
+{
+  "name": "ggf-core",
+  "version": "1.0.0",
+  "description": "Welcome to the foundational layer of the Global Governance Frameworks ecosystem, with shared schemas and utilities! 🏗️",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "exports": {
+    "./schemas/egp/*": "./schemas/egp/*",
+    "./schemas/unified/*": "./schemas/unified/*",
+    "./examples/*": "./examples/*"
+  },
+  "files": ["schemas", "examples", "packages"],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GlobalGovernanceFrameworks/ggf-core.git"
+  },
+  "keywords": ["governance", "schemas", "egp", "love-ledger", "aubi"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/GlobalGovernanceFrameworks/ggf-core/issues"
+  },
+  "homepage": "https://github.com/GlobalGovernanceFrameworks/ggf-core#readme"
+}

@@ -386,19 +386,19 @@ const customSchema = createExtensionSchema({
 
 ## Future Roadmap
 
-### 🎯 **Short Term (Q1-Q2 2025)**
+### 🎯 **Short Term (Q3-Q4 2025, Q1-Q2 2026)**
 - Core schema stabilization and TypeScript definitions
 - Basic validation and conversion utilities
 - Integration with initial EGP, Love Ledger, and AUBI implementations
 - Community feedback integration and iteration
 
-### 🚀 **Medium Term (Q3-Q4 2025)**
+### 🚀 **Medium Term (Q3-Q4 2026, Q1-Q4 2027)**
 - Advanced privacy tools and zero-knowledge proof utilities
 - Cultural adaptation frameworks and localization tools
 - Performance optimization and scalability improvements
 - Comprehensive documentation and developer resources
 
-### 🌍 **Long Term (2026+)**
+### 🌍 **Long Term (2028+)**
 - AI-assisted schema evolution and migration tools
 - Advanced fraud detection and security utilities
 - Inter-planetary data exchange protocols (space governance integration)

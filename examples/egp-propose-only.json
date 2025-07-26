@@ -1,0 +1,14 @@
+{
+  "title": "Moonlight Irrigation & Ancient Terracing Revival",
+  "in_response_to": "/sense/123",
+  "solution": {
+    "description": "Combine night irrigation with traditional terraces",
+    "format": "text/markdown"
+  },
+  "test": "Garden produces 80% harvest with 60% less water",
+  "sunset": "P6M",
+  "resources": {
+    "needed": ["clay_pots", "shade_cloth"],
+    "offered": ["volunteer_labor", "stone_quarry_access"]
+  }
+}

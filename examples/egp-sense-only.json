@@ -1,0 +1,11 @@
+{
+  "issue": "community_garden_water_shortage",
+  "title": "Community garden well running dry",
+  "scope": "village:san_pedro_de_atacama",
+  "evidence": {
+    "sensor_data": "Well depth: 2.3m (was 4.1m last season)",
+    "oral_history": "Elder Rosa says this happened in '72"
+  },
+  "urgency": "4/5",
+  "tags": ["water", "food_security", "indigenous_knowledge"]
+}

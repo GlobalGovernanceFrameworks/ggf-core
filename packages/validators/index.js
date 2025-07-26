@@ -1,12 +1,18 @@
 // packages/validators/index.js
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
-// Import schemas
-import senseSchema from '../../schemas/egp/sense.json' assert { type: 'json' };
-import proposeSchema from '../../schemas/egp/propose.json' assert { type: 'json' };
-import adoptSchema from '../../schemas/egp/adopt.json' assert { type: 'json' };
-import unifiedSchema from '../../schemas/unified/egp-love-ledger.json' assert { type: 'json' };
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Load schemas
+const senseSchema = JSON.parse(readFileSync(join(__dirname, '../../schemas/egp/sense.json'), 'utf-8'));
+const proposeSchema = JSON.parse(readFileSync(join(__dirname, '../../schemas/egp/propose.json'), 'utf-8'));
+const adoptSchema = JSON.parse(readFileSync(join(__dirname, '../../schemas/egp/adopt.json'), 'utf-8'));
+const unifiedSchema = JSON.parse(readFileSync(join(__dirname, '../../schemas/unified/egp-love-ledger.json'), 'utf-8'));
 
 const ajv = new Ajv({ allErrors: true });
 addFormats(ajv);

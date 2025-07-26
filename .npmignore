@@ -1,0 +1,8 @@
+# ggf-core/.npmignore
+*.md
+!README.md
+.git*
+node_modules
+test
+coverage
+.nyc_output

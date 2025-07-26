@@ -1,30 +1,54 @@
 {
-  "name": "ggf-core",
-  "version": "1.0.0",
+  "name": "@bjornkennethholmstrom/ggf-core",
+  "version": "0.1.1",
   "description": "Welcome to the foundational layer of the Global Governance Frameworks ecosystem, with shared schemas and utilities! 🏗️",
   "main": "index.js",
+  "type": "module",
   "directories": {
     "example": "examples"
   },
   "exports": {
+    ".": "./index.js",
     "./schemas/egp/*": "./schemas/egp/*",
     "./schemas/unified/*": "./schemas/unified/*",
-    "./examples/*": "./examples/*"
+    "./schemas/love-ledger/*": "./schemas/love-ledger/*",
+    "./examples/*": "./examples/*",
+    "./packages/*": "./packages/*"
   },
-  "files": ["schemas", "examples", "packages"],
+  "files": [
+    "schemas",
+    "examples",
+    "packages",
+    "index.js",
+    "README.md"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "governance",
+    "schemas",
+    "egp",
+    "love-ledger",
+    "aubi",
+    "json-schema",
+    "care-economy"
+  ],
+  "author": "Global Governance Frameworks",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GlobalGovernanceFrameworks/ggf-core.git"
   },
-  "keywords": ["governance", "schemas", "egp", "love-ledger", "aubi"],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/GlobalGovernanceFrameworks/ggf-core/issues"
   },
-  "homepage": "https://github.com/GlobalGovernanceFrameworks/ggf-core#readme"
+  "homepage": "https://globalgovernanceframeworks.org",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
 }

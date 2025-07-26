@@ -408,10 +408,19 @@ const customSchema = createExtensionSchema({
 
 - **Repository**: [github.com/GlobalGovernanceFrameworks/ggf-core](https://github.com/GlobalGovernanceFrameworks/ggf-core)
 - **Documentation**: [globalgovernanceframeworks.org/core](https://globalgovernanceframeworks.org/core)
-- **NPM Package**: [@ggf/core](https://npmjs.com/package/@ggf/core)
-- **Community**: globalgovernanceframeworks@gmail.com
+- **NPM Package**: [@bjornkennethholmstrom/ggf-core](https://npmjs.com/package/@bjornkennethholmstrom/ggf-core)
+- **Email**: contact@globalgovernanceframeworks.org
+- **Community Discord**: https://discord.gg/MjnzCfh4mM
 - **Issue Tracker**: Report bugs, request features, propose schema changes
 - **Discussion Forum**: Community chat for integration questions and collaboration
+
+## Package Name Migration
+
+**Current**: `@bjornkennethholmstrom/ggf-core`  
+**Future**: `@globalgovernanceframeworks/core` (pending NPM namespace approval)
+
+This package will be migrated to the official organization namespace once available. 
+Current installations will continue to work, with deprecation notices pointing to the new location.
 
 ## License
 

@@ -1,22 +1,197 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Love Ledger Care Act",
+  "description": "Structure for logging care, ecological, and cultural contributions",
   "type": "object",
   "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the care act",
+      "examples": ["care_act_2025_001", "bafyrei..."]
+    },
     "act_type": {
       "type": "string",
-      "enum": ["childcare", "eldercare", "ecological", "cultural", "community"]
+      "enum": ["childcare", "eldercare", "ecological", "cultural", "community", "spiritual"],
+      "description": "Type of care contribution",
+      "examples": ["eldercare", "ecological"]
     },
-    "hours": { "type": "number", "minimum": 0 },
-    "impact_score": { "type": "integer", "minimum": 1, "maximum": 5 },
-    "validation": {
+    "title": {
+      "type": "string",
+      "description": "Human-readable description of the care act",
+      "minLength": 5,
+      "maxLength": 200,
+      "examples": ["Daily elder check-ins", "River cleanup and restoration"]
+    },
+    "agent": {
+      "type": "string", 
+      "description": "DID or identifier of person performing the care",
+      "examples": ["did:example:maria", "baz:elder_rosa"]
+    },
+    "recipient": {
+      "type": "string",
+      "description": "Who or what benefited from the care",
+      "examples": ["elder_jose", "watershed:rio_grande", "community:taos"]
+    },
+    "hours": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "description": "Time spent on care activity"
+    },
+    "impact_score": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Community-assessed impact (1=minimal, 5=transformative)"
+    },
+    "location": {
       "type": "object",
       "properties": {
-        "community_weaver": { "type": "string" },
-        "witnesses": { "type": "array", "items": { "type": "string" } },
-        "cultural_protocol": { "type": "string" }
+        "gps": { "type": "string", "description": "GPS coordinates" },
+        "community_id": { "type": "string", "description": "BAZ or community identifier" },
+        "place_name": { "type": "string", "description": "Human-readable location" }
       }
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the care act occurred"
+    },
+    "validation": {
+      "type": "object",
+      "description": "Community validation of the care act",
+      "properties": {
+        "community_weaver": {
+          "type": "string",
+          "description": "DID of validating Community Weaver"
+        },
+        "witnesses": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "DIDs of community members who witnessed/validated"
+        },
+        "cultural_protocol": {
+          "type": "string",
+          "description": "Cultural validation method used",
+          "examples": ["elder_council_approval", "ceremony_validation", "peer_consensus"]
+        },
+        "validated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["validated_at"]
+    },
+    "evidence": {
+      "type": "object",
+      "description": "Supporting evidence for the care act",
+      "properties": {
+        "photos": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "IPFS hashes of photos"
+        },
+        "testimonials": {
+          "type": "array", 
+          "items": { "type": "string" },
+          "description": "Community testimonials or stories"
+        },
+        "sensor_data": {
+          "type": "object",
+          "description": "Quantitative measurements if applicable"
+        }
+      }
+    },
+    "hearts_calculation": {
+      "type": "object",
+      "description": "How Hearts were calculated for this act",
+      "properties": {
+        "base_hearts": { "type": "number", "description": "Hours × impact_score × 10" },
+        "cultural_multiplier": { "type": "number", "description": "Community-specific adjustment" },
+        "green_job_score": { "type": "number", "description": "Ecological work multiplier (1.0-1.5)" },
+        "total_hearts": { "type": "number", "description": "Final Hearts awarded" }
+      }
+    },
+    "leaves_earned": {
+      "type": "object",
+      "description": "Leaves NFTs earned for ecological work",
+      "properties": {
+        "amount": { "type": "number" },
+        "nft_metadata": {
+          "type": "object",
+          "properties": {
+            "gps": { "type": "string" },
+            "eco_act": { "type": "string" },
+            "impact_measurement": { "type": "string" }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional context-specific data",
+      "additionalProperties": true
     }
   },
-  "required": ["act_type", "hours", "impact_score"]
+  "required": ["act_type", "title", "agent", "hours", "impact_score", "timestamp"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "id": "care_act_2025_001",
+      "act_type": "eldercare", 
+      "title": "Daily wellness check for Elder José",
+      "agent": "did:example:maria",
+      "recipient": "elder_jose",
+      "hours": 1,
+      "impact_score": 4,
+      "timestamp": "2025-07-25T09:00:00Z",
+      "location": {
+        "community_id": "baz:taos",
+        "place_name": "Elder José's home"
+      },
+      "validation": {
+        "community_weaver": "did:example:weaver_rosa",
+        "witnesses": ["did:example:neighbor_carlos"],
+        "cultural_protocol": "elder_council_approval",
+        "validated_at": "2025-07-25T18:00:00Z"
+      },
+      "hearts_calculation": {
+        "base_hearts": 40,
+        "cultural_multiplier": 1.2,
+        "total_hearts": 48
+      }
+    },
+    {
+      "id": "care_act_2025_002",
+      "act_type": "ecological",
+      "title": "Rio Grande watershed restoration",
+      "agent": "did:example:youth_collective",
+      "recipient": "watershed:rio_grande",
+      "hours": 6,
+      "impact_score": 5,
+      "timestamp": "2025-07-25T06:00:00Z",
+      "location": {
+        "gps": "35.6812,-105.9056",
+        "community_id": "baz:taos"
+      },
+      "validation": {
+        "community_weaver": "did:example:elder_council",
+        "cultural_protocol": "land_blessing_ceremony",
+        "validated_at": "2025-07-25T19:00:00Z"
+      },
+      "hearts_calculation": {
+        "base_hearts": 300,
+        "green_job_score": 1.4,
+        "total_hearts": 420
+      },
+      "leaves_earned": {
+        "amount": 20,
+        "nft_metadata": {
+          "gps": "35.6812,-105.9056", 
+          "eco_act": "watershed_restoration",
+          "impact_measurement": "500_native_plants_planted"
+        }
+      }
+    }
+  ]
 }

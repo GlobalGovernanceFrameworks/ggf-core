@@ -1,0 +1,154 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Hearts Allocation",
+  "description": "Schema for distributing Hearts currency based on care contributions",
+  "type": "object",
+  "properties": {
+    "allocation_id": {
+      "type": "string",
+      "description": "Unique identifier for this Hearts allocation"
+    },
+    "care_act_id": {
+      "type": "string", 
+      "description": "Reference to the care act that earned these Hearts"
+    },
+    "recipient": {
+      "type": "string",
+      "description": "DID of person receiving Hearts",
+      "examples": ["did:example:maria", "baz:community_pool"]
+    },
+    "hearts_amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Number of Hearts allocated"
+    },
+    "calculation_method": {
+      "type": "object",
+      "description": "How the Hearts amount was calculated",
+      "properties": {
+        "formula": {
+          "type": "string",
+          "description": "Calculation formula used",
+          "examples": ["hours × impact_score × 10 × cultural_multiplier"]
+        },
+        "base_rate": {
+          "type": "number",
+          "description": "Base Hearts per hour"
+        },
+        "impact_multiplier": {
+          "type": "number",
+          "description": "Multiplier based on impact score (1-5)"
+        },
+        "cultural_multiplier": {
+          "type": "number",
+          "description": "Community-specific adjustment",
+          "minimum": 0.5,
+          "maximum": 2.0
+        },
+        "green_job_score": {
+          "type": "number",
+          "description": "Ecological work bonus (1.0-1.5)",
+          "minimum": 1.0,
+          "maximum": 1.5
+        }
+      },
+      "required": ["formula"]
+    },
+    "allocation_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When Hearts were allocated"
+    },
+    "community_context": {
+      "type": "object",
+      "description": "Community-specific allocation context",
+      "properties": {
+        "community_id": {
+          "type": "string",
+          "description": "BAZ or community identifier"
+        },
+        "local_hearts_supply": {
+          "type": "number",
+          "description": "Total Hearts in circulation locally"
+        },
+        "community_weaver": {
+          "type": "string",
+          "description": "DID of approving Community Weaver"
+        }
+      }
+    },
+    "aubi_integration": {
+      "type": "object",
+      "description": "How this allocation affects AUBI payments",
+      "properties": {
+        "layer": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 3,
+          "description": "AUBI layer this counts toward (2=contribution, 3=equity)"
+        },
+        "monthly_bonus": {
+          "type": "number",
+          "description": "Monthly AUBI bonus from accumulated Hearts"
+        }
+      }
+    },
+    "transaction_hash": {
+      "type": "string",
+      "description": "Blockchain transaction hash for Hearts transfer"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "validated", "distributed", "disputed"],
+      "description": "Current status of Hearts allocation"
+    }
+  },
+  "required": ["allocation_id", "care_act_id", "recipient", "hearts_amount", "calculation_method", "allocation_date"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "allocation_id": "hearts_2025_001", 
+      "care_act_id": "care_act_2025_001",
+      "recipient": "did:example:maria",
+      "hearts_amount": 48,
+      "calculation_method": {
+        "formula": "1 hour × 4 impact × 10 base × 1.2 cultural",
+        "base_rate": 10,
+        "impact_multiplier": 4,
+        "cultural_multiplier": 1.2
+      },
+      "allocation_date": "2025-07-25T18:30:00Z",
+      "community_context": {
+        "community_id": "baz:taos",
+        "community_weaver": "did:example:weaver_rosa"
+      },
+      "aubi_integration": {
+        "layer": 2,
+        "monthly_bonus": 48
+      },
+      "status": "distributed"
+    },
+    {
+      "allocation_id": "hearts_2025_002",
+      "care_act_id": "care_act_2025_002", 
+      "recipient": "did:example:youth_collective",
+      "hearts_amount": 420,
+      "calculation_method": {
+        "formula": "6 hours × 5 impact × 10 base × 1.4 green_job_score",
+        "base_rate": 10,
+        "impact_multiplier": 5,
+        "green_job_score": 1.4
+      },
+      "allocation_date": "2025-07-25T19:30:00Z",
+      "community_context": {
+        "community_id": "baz:taos",
+        "community_weaver": "did:example:elder_council"
+      },
+      "aubi_integration": {
+        "layer": 2,
+        "monthly_bonus": 420
+      },
+      "status": "distributed"
+    }
+  ]
+}

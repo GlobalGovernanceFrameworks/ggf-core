@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Love Ledger Care Act",
+  "type": "object",
+  "properties": {
+    "act_type": {
+      "type": "string",
+      "enum": ["childcare", "eldercare", "ecological", "cultural", "community"]
+    },
+    "hours": { "type": "number", "minimum": 0 },
+    "impact_score": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "community_weaver": { "type": "string" },
+        "witnesses": { "type": "array", "items": { "type": "string" } },
+        "cultural_protocol": { "type": "string" }
+      }
+    }
+  },
+  "required": ["act_type", "hours", "impact_score"]
+}

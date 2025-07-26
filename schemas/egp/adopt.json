@@ -1,0 +1,193 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EGP Adopt Operation",
+  "description": "The art of temporary commitment - implementing experiments",
+  "type": "object",
+  "properties": {
+    "proposal_uri": {
+      "type": "string",
+      "description": "URI of the proposal being adopted",
+      "pattern": "^/propose/[a-zA-Z0-9]+$",
+      "examples": ["/propose/456", "/propose/bafkrei..."]
+    },
+    "decision_process": {
+      "type": "object",
+      "description": "How the decision was made",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of decision-making process used",
+          "enum": ["consent", "majority", "elder_council", "token_vote", "oral_tradition", "consensus"],
+          "examples": ["consent", "elder_council"]
+        },
+        "record": {
+          "type": "string",
+          "description": "IPFS hash or other reference to decision record",
+          "examples": ["QmXyZ...", "ceremony:new_moon_water_blessing_2025_07_24"]
+        },
+        "participants": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of decision participants",
+          "examples": [
+            ["alice", "bob", "charlie"],
+            ["Rosa_water_keeper", "Carlos_young_farmer_rep", "Maria_family_delegate"]
+          ]
+        },
+        "unanimous_consent": {
+          "type": "boolean",
+          "description": "Whether decision was unanimous"
+        },
+        "spiritual_validation": {
+          "type": "string",
+          "description": "Any spiritual or cultural validation performed",
+          "examples": ["Water ceremony performed, ancestors consulted, dreams were favorable"]
+        }
+      },
+      "required": ["type"],
+      "additionalProperties": true
+    },
+    "modifications": {
+      "type": "object",
+      "description": "Optional modifications to the original proposal",
+      "properties": {
+        "sunset": {
+          "type": "string",
+          "description": "Modified duration (ISO 8601)",
+          "pattern": "^P(\\d+Y)?(\\d+M)?(\\d+W)?(\\d+D)?(T(\\d+H)?(\\d+M)?(\\d+S)?)?$",
+          "examples": ["P3M", "P4M"]
+        },
+        "test": {
+          "type": "string",
+          "description": "Adjusted success metric",
+          "maxLength": 500,
+          "examples": [
+            "Conflict drops 10%",
+            "Garden produces 75% of normal harvest with 50% less water. Zero water conflicts. 3 youth certified in traditional methods."
+          ]
+        },
+        "cultural_additions": {
+          "type": "string",
+          "description": "Community-specific cultural adaptations",
+          "maxLength": 1000,
+          "examples": ["Include monthly full-moon water gratitude ceremony. Document elder knowledge in Kunza language."]
+        }
+      },
+      "additionalProperties": true
+    },
+    "monitoring": {
+      "type": "object",
+      "description": "Monitoring plan for the adoption",
+      "properties": {
+        "who": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "minItems": 1,
+          "description": "Groups responsible for monitoring",
+          "examples": [
+            ["water_council", "youth_group"],
+            ["water_council", "youth_learners", "elder_rosa", "sensor_collective"]
+          ]
+        },
+        "frequency": {
+          "type": "string",
+          "description": "How often to check progress (ISO 8601 duration)",
+          "pattern": "^P(\\d+Y)?(\\d+M)?(\\d+W)?(\\d+D)?(T(\\d+H)?(\\d+M)?(\\d+S)?)?$",
+          "examples": ["P1W", "P2W"]
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "description": "Specific metrics to track",
+          "examples": [
+            ["well_depth_measurements", "plant_health_scores"],
+            ["well_depth_measurements", "plant_health_scores", "community_harmony_index", "traditional_knowledge_transmission_rate"]
+          ]
+        },
+        "reporting_format": {
+          "type": "string",
+          "description": "How progress will be reported",
+          "maxLength": 200,
+          "examples": [
+            "Monthly storytelling circle + digital data dashboard",
+            "Monthly storytelling circle + digital dashboard"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "adopter": {
+      "type": "object",
+      "description": "Information about the adopting entity",
+      "properties": {
+        "did": {
+          "type": "string",
+          "description": "Decentralized identifier of the adopter"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["community", "organization", "collective", "institution"],
+          "description": "Type of entity adopting the proposal"
+        },
+        "authority": {
+          "type": "string",
+          "description": "Authority or legitimacy basis for adoption"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional context-specific metadata",
+      "additionalProperties": true
+    }
+  },
+  "required": ["proposal_uri", "decision_process"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "proposal_uri": "/propose/456",
+      "decision_process": {
+        "type": "consent",
+        "record": "QmXyZ...",
+        "participants": ["alice", "bob", "charlie"]
+      },
+      "modifications": {
+        "sunset": "P3M",
+        "test": "Conflict drops 10%"
+      },
+      "monitoring": {
+        "who": ["water_council", "youth_group"],
+        "frequency": "P1W"
+      }
+    },
+    {
+      "proposal_uri": "/propose/bafkrei...",
+      "decision_process": {
+        "type": "elder_council",
+        "record": "ceremony:new_moon_water_blessing_2025_07_24",
+        "participants": ["Rosa_water_keeper", "Carlos_young_farmer_rep", "Maria_family_delegate"],
+        "unanimous_consent": true,
+        "spiritual_validation": "Water ceremony performed, ancestors consulted, dreams were favorable"
+      },
+      "modifications": {
+        "sunset": "P4M",
+        "test": "Garden produces 75% of normal harvest with 50% less water. Zero water conflicts. 3 youth certified in traditional methods.",
+        "cultural_additions": "Include monthly full-moon water gratitude ceremony. Document elder knowledge in Kunza language."
+      },
+      "monitoring": {
+        "who": ["water_council", "youth_learners", "elder_rosa", "sensor_collective"],
+        "frequency": "P2W",
+        "metrics": ["well_depth_measurements", "plant_health_scores", "community_harmony_index", "traditional_knowledge_transmission_rate"],
+        "reporting_format": "Monthly storytelling circle + digital data dashboard"
+      }
+    }
+  ]
+}

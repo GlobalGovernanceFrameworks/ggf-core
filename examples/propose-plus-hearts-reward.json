@@ -1,0 +1,23 @@
+{
+  "operation": "propose",
+  "timestamp": "2025-07-25T15:00:00Z",
+  "agent": "did:example:weaver",
+  "location": { "community_id": "baz:taos" },
+  "content": {
+    "description": "Daily elder check-ins by volunteers",
+    "evidence": ["ipfs://QmAbC..."]
+  },
+  "care_metrics": {
+    "act_type": "elders",
+    "hours": 1,
+    "impact_score": 4
+  },
+  "currency_alloc": {
+    "hearts": 20,
+    "leaves": null
+  },
+  "aubi_integration": {
+    "layer": 2,
+    "sunset_clause": "P3M"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EGP Sense Operation",
+  "description": "The art of noticing - detecting systemic signals",
+  "type": "object",
+  "properties": {
+    "issue": {
+      "type": "string",
+      "description": "Machine-readable issue ID",
+      "minLength": 3,
+      "maxLength": 100,
+      "examples": ["water_shortage", "community_garden_water_shortage"]
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable title",
+      "maxLength": 200,
+      "examples": ["The well is dry", "Community garden well running dry"]
+    },
+    "scope": {
+      "type": "string",
+      "description": "GPS, bioregion, or community ID",
+      "minLength": 3,
+      "maxLength": 100,
+      "examples": ["village:llajta", "village:san_pedro_de_atacama"]
+    },
+    "evidence": {
+      "type": "object",
+      "description": "Flexible proof of the issue",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "sensor_data": "pH 9.2",
+          "oral_history": "Elder María says this hasn't happened in 70 years"
+        },
+        {
+          "sensor_data": "Well depth: 2.3m (was 4.1m last season)",
+          "oral_history": "Elder Rosa says: 'This happened during the great drought of '72, but never this early in the season'",
+          "community_impact": "15 families depend on this garden for vegetables",
+          "photo_documentation": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEA..."
+        }
+      ]
+    },
+    "urgency": {
+      "type": "string",
+      "description": "Urgency level (1=chronic, 5=catastrophic)",
+      "pattern": "^[1-5]/5$",
+      "examples": ["3/5", "4/5"]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 50
+      },
+      "maxItems": 10,
+      "description": "Searchable tags",
+      "examples": [
+        ["water", "climate", "indigenous_knowledge"],
+        ["water", "food_security", "indigenous_knowledge", "climate_adaptation", "community_resilience"]
+      ]
+    },
+    "reporter": {
+      "type": "object",
+      "description": "Information about who is reporting the sense signal",
+      "properties": {
+        "did": {
+          "type": "string",
+          "description": "Decentralized identifier of the reporter"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["human", "sensor", "ai", "institution"],
+          "description": "Type of entity reporting the signal"
+        },
+        "location": {
+          "type": "string",
+          "description": "Reporter's location context"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional context-specific metadata",
+      "additionalProperties": true
+    }
+  },
+  "required": ["issue", "scope"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "issue": "water_shortage",
+      "title": "The well is dry",
+      "scope": "village:llajta",
+      "evidence": {
+        "sensor_data": "pH 9.2",
+        "oral_history": "Elder María says this hasn't happened in 70 years"
+      },
+      "urgency": "3/5",
+      "tags": ["water", "climate", "indigenous_knowledge"]
+    },
+    {
+      "issue": "community_garden_water_shortage",
+      "title": "Community garden well running dry - affecting food security",
+      "scope": "village:san_pedro_de_atacama",
+      "evidence": {
+        "sensor_data": "Well depth: 2.3m (was 4.1m last season)",
+        "oral_history": "Elder Rosa says: 'This happened during the great drought of '72, but never this early in the season'",
+        "community_impact": "15 families depend on this garden for vegetables",
+        "photo_documentation": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEA..."
+      },
+      "urgency": "4/5",
+      "tags": ["water", "food_security", "indigenous_knowledge", "climate_adaptation", "community_resilience"]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "operation": "sense",
+  "timestamp": "2025-07-25T14:30:00Z",
+  "agent": "did:example:maria",
+  "location": { "gps": "35.6812,-105.9056", "community_id": "baz:taos" },
+  "content": {
+    "description": "Elder José isolated for 3 days",
+    "evidence": ["ipfs://QmXyZ..."]
+  },
+  "care_metrics": {
+    "act_type": "elders",
+    "hours": 0,
+    "impact_score": 3
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "operation": "adopt",
+  "timestamp": "2025-07-25T16:00:00Z",
+  "agent": "baz:taos_council",
+  "location": { "gps": "35.6812,-105.9056" },
+  "content": {
+    "description": "Adopted elder check-ins + river cleanup",
+    "evidence": ["ipfs://QmDeF..."]
+  },
+  "care_metrics": {
+    "act_type": "ecological",
+    "hours": 2,
+    "impact_score": 5
+  },
+  "currency_alloc": {
+    "hearts": 10,
+    "leaves": {
+      "amount": 5,
+      "nft_metadata": {
+        "gps": "35.6812,-105.9056",
+        "eco_act": "river_cleanup"
+      }
+    }
+  },
+  "aubi_integration": {
+    "layer": 2,
+    "sunset_clause": "P6M"
+  }
+}

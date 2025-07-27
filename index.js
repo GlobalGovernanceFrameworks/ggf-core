@@ -13,6 +13,8 @@ export const senseSchema = JSON.parse(readFileSync(join(__dirname, 'schemas/egp/
 export const proposeSchema = JSON.parse(readFileSync(join(__dirname, 'schemas/egp/propose.json'), 'utf-8'));
 export const adoptSchema = JSON.parse(readFileSync(join(__dirname, 'schemas/egp/adopt.json'), 'utf-8'));
 export const unifiedSchema = JSON.parse(readFileSync(join(__dirname, 'schemas/unified/egp-love-ledger.json'), 'utf-8'));
+export const careActSchema = JSON.parse(readFileSync(join(__dirname, 'schemas/love-ledger/care-act.json'), 'utf-8'));
+export const heartsAllocationSchema = JSON.parse(readFileSync(join(__dirname, 'schemas/love-ledger/hearts-allocation.json'), 'utf-8'));
 
 // Export examples
 export const senseExample = JSON.parse(readFileSync(join(__dirname, 'examples/sense-plus-care-log.json'), 'utf-8'));

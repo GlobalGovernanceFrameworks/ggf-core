@@ -56,7 +56,7 @@
       "properties": {
         "hearts": { "type": "number" },
         "leaves": { 
-          "type": "object",
+          "type": ["object", "null"],
           "properties": {
             "amount": { "type": "number" },
             "nft_metadata": { 

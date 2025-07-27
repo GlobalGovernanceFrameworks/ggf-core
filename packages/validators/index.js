@@ -14,7 +14,7 @@ const proposeSchema = JSON.parse(readFileSync(join(__dirname, '../../schemas/egp
 const adoptSchema = JSON.parse(readFileSync(join(__dirname, '../../schemas/egp/adopt.json'), 'utf-8'));
 const unifiedSchema = JSON.parse(readFileSync(join(__dirname, '../../schemas/unified/egp-love-ledger.json'), 'utf-8'));
 const careActSchema = JSON.parse(readFileSync(join(__dirname, '../../schemas/love-ledger/care-act.json'), 'utf-8'));
-const heartsAllocationsSchema = JSON.parse(readFileSync(join(__dirname, '../../schemas/love-ledger/hearts-allocation.json'), 'utf-8'));
+const heartsAllocationSchema = JSON.parse(readFileSync(join(__dirname, '../../schemas/love-ledger/hearts-allocation.json'), 'utf-8'));
 
 const ajv = new Ajv({ allErrors: true });
 addFormats(ajv);
